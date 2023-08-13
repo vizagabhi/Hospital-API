@@ -3,7 +3,7 @@ API for the doctors of a Hospital which has been allocated by the govt for testi
 
 ## Tech Stack
 **Server:** Node, Express
-**Database:** Mogodb
+**Database:** Mongodb
 
 ## Installation
 For local setup , please follow below steps:
