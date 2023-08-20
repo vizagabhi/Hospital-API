@@ -18,6 +18,10 @@ app.use(passport.initialize());
 // Use express router
 app.use('/', require('./routes/index'))
 
+app.get('/',(req,res)=>{
+    res.send('<h1>Welcome to Hospital API.</h1>')
+})
+
 app.listen(process.env.PORT||port, function (error) {
     if (error) {
         console.log(`Error in running the Server. Error is : ${error}`);
