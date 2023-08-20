@@ -30,8 +30,8 @@ app.use(passport.initialize());
 // Use express router
 app.use('/', require('./routes/index'))
 
-app.get('/',(req,res)=>{
-   return res.send('<h1>Welcome to Hospital API.</h1>')
+app.get("/",(req,res)=>{
+   return res.json({message:"Welcome to hospital API."})
 })
 
 connectDB().then(() => {
