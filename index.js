@@ -19,7 +19,7 @@ app.use(passport.initialize());
 app.use('/', require('./routes/index'))
 
 app.get('/',(req,res)=>{
-    res.send('<h1>Welcome to Hospital API.</h1>')
+   return res.send('<h1>Welcome to Hospital API.</h1>')
 })
 
 app.listen(process.env.PORT||port, function (error) {
