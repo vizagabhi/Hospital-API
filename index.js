@@ -1,10 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-
+const db = require('./config/mongoose')
 
 const port = 8000;
-const db = require('./config/mongoose')
+
+//database connection
+db.connect();
 
 //Used for Session Cookie
 const passport = require('passport');
