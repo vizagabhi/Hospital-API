@@ -1,4 +1,5 @@
 require('dotenv').config();
+const cors = require("cors");
 const express = require('express');
 const app = express();
 const db = require('./config/mongoose')
@@ -13,8 +14,8 @@ const passport = require('passport');
 const passportJWT = require('./config/passport-strategy')
 
 //Middlewares
+app.use(cors());
 app.use(express.urlencoded({ extended: true }))
-
 app.use(passport.initialize());
 
 // Use express router
