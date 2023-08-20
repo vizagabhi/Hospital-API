@@ -5,7 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 // const db = require('./config/mongoose')
 
-const port = 8000;
+const PORT = process.env.PORT || 8000
 
 //database connection as per cyclic compatibility
 const connectDB = async () => {
@@ -35,7 +35,7 @@ app.get('/',(req,res)=>{
 })
 
 connectDB().then(() => {
-    app.listen(port, () => {
+    app.listen(PORT, () => {
         console.log("listening for requests");
     })
 })
