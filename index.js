@@ -2,12 +2,21 @@ require('dotenv').config();
 const cors = require("cors");
 const express = require('express');
 const app = express();
-const db = require('./config/mongoose')
+const mongoose = require('mongoose');
+// const db = require('./config/mongoose')
 
 const port = 8000;
 
-//database connection
-db.connect();
+//database connection as per cyclic compatibility
+const connectDB = async () => {
+    try {
+      const conn = await mongoose.connect(process.env.MONGO_URI);
+      console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+      console.log(error);
+      process.exit(1);
+    }
+  }
 
 //Used for Session Cookie
 const passport = require('passport');
@@ -25,10 +34,16 @@ app.get('/',(req,res)=>{
    return res.send('<h1>Welcome to Hospital API.</h1>')
 })
 
-app.listen(process.env.PORT||port, function (error) {
-    if (error) {
-        console.log(`Error in running the Server. Error is : ${error}`);
-        return;
-    }
-    console.log(`Server is up and running on the port: ${port}`);
+connectDB().then(() => {
+    app.listen(port, () => {
+        console.log("listening for requests");
+    })
 })
+
+// app.listen(process.env.PORT||port, function (error) {
+//     if (error) {
+//         console.log(`Error in running the Server. Error is : ${error}`);
+//         return;
+//     }
+//     console.log(`Server is up and running on the port: ${port}`);
+// })
