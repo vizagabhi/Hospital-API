@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 
@@ -9,7 +10,7 @@ const db = require('./config/mongoose')
 const passport = require('passport');
 const passportJWT = require('./config/passport-strategy')
 
-
+//Middlewares
 app.use(express.urlencoded({ extended: true }))
 
 app.use(passport.initialize());
@@ -17,7 +18,7 @@ app.use(passport.initialize());
 // Use express router
 app.use('/', require('./routes/index'))
 
-app.listen(port, function (error) {
+app.listen(process.env.PORT||port, function (error) {
     if (error) {
         console.log(`Error in running the Server. Error is : ${error}`);
         return;
